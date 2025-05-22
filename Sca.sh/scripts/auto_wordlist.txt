@@ -1,0 +1,85 @@
+# === Flag Files ===
+/root/root.txt
+/home/*/user.txt
+/flag.txt
+/*/flag*.txt
+
+# === Credential Stores ===
+/etc/passwd
+/etc/shadow
+/etc/group
+/root/.ssh/id_rsa
+/root/.ssh/authorized_keys
+/home/*/.ssh/id_rsa
+/home/*/.ssh/authorized_keys
+/home/*/.bash_history
+/home/*/.zsh_history
+/var/mail/*
+/var/spool/mail/*
+
+# === Configurations ===
+/etc/hosts
+/etc/hostname
+/etc/resolv.conf
+/etc/fstab
+/etc/cron.d/*
+/etc/cron.daily/*
+/etc/systemd/system/*.service
+/etc/network/interfaces
+/etc/init.d/*
+/etc/profile
+/etc/environment
+
+# === Web and Dev Secrets ===
+/var/www/html/*.php
+/var/www/html/*.env
+/var/www/html/config.php
+/var/www/*.bak
+/var/www/html/*.db
+/home/*/config.json
+/home/*/secrets.yml
+/home/*/.env
+/home/*/*.log
+
+# === Hidden or Custom Dotfiles ===
+/home/*/.config/*
+/home/*/.git/config
+/home/*/.npmrc
+/home/*/.docker/config.json
+/root/.aws/credentials
+
+# === Misc Wordlists / Key Dumps ===
+/usr/share/wordlists/*
+/home/*/Downloads/*.txt
+/root/*.log
+/home/*/*.log
+
+# === Passwords & Vaults ===
+/home/*/passwords.txt
+/home/*/vault.kdbx
+/home/*/keepass.kdbx
+/home/*/secrets.txt
+
+# === Developer Tools ===
+/home/*/.vscode/settings.json
+/home/*/.vscode/launch.json
+/home/*/.idea/*.xml
+
+# === SUID Binaries (may already be covered) ===
+/bin/su
+/usr/bin/sudo
+/usr/bin/passwd
+
+# === Cloud Keys ===
+/root/.aws/credentials
+/home/*/.aws/credentials
+/root/.azure/*
+/home/*/.azure/*
+/root/.gcp/*
+/home/*/.gcp/*
+
+# === Logs and Runtime ===
+/var/log/auth.log
+/var/log/syslog
+/var/log/messages
+/tmp/

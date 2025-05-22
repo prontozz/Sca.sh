@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+#Change this here !!!!!!!!!!!!!!!!1
 WORDLIST="list.txt"
 WORDLIST_RESULTS="wordlist_results.txt"
 DIR_WORDLIST="dir_wordlist.txt"
@@ -96,35 +98,41 @@ sensitive_info() {
 }
 
 wordlist_search() {
-  if [ ! -f "$WORDLIST" ]; then
-    echo "[!] Wordlist file '$WORDLIST' not found."
-    return 1
+  local ACTIVE_WORDLIST="$WORDLIST"
+  if [ ! -f "$ACTIVE_WORDLIST" ]; then
+    echo "[!] '$WORDLIST' not found. Falling back to auto-generated list: auto_wordlist.txt"
+    if [ ! -f "auto_wordlist.txt" ]; then
+      echo "[!] 'auto_wordlist.txt' is also missing. Cannot continue."
+      return 1
+    fi
+    ACTIVE_WORDLIST="auto_wordlist.txt"
   fi
 
   {
     echo "===== Wordlist-Based Search ====="
-    echo "Using: $WORDLIST"
+    echo "Using: $ACTIVE_WORDLIST"
     > "$WORDLIST_RESULTS"
 
     while IFS= read -r path; do
-      [[ -z "$path" || "$path" =~ ^# ]] && continue
-      expanded_paths=$(eval echo "$path")
+      [[ -z "$path" || "$path" =~ ^
+      expanded_paths=$(eval echo "$path")  
       for p in $expanded_paths; do
         if [ -e "$p" ]; then
           echo "Found: $p"
           echo "$p" >> "$WORDLIST_RESULTS"
         fi
       done
-    done < "$WORDLIST"
+    done < "$ACTIVE_WORDLIST"
 
     if [ -s "$WORDLIST_RESULTS" ]; then
-      echo "Results saved to $WORDLIST_RESULTS"
+      echo "[+] Results saved to $WORDLIST_RESULTS"
     else
-      echo "No files found matching the wordlist."
+      echo "[!] No files found matching the wordlist."
       rm -f "$WORDLIST_RESULTS"
     fi
   } | tee >(prompt_save "wordlist")
 }
+
 
 directory_scan() {
   {
